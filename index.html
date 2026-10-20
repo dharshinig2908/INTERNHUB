@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5ff">
+  <title>InternHub | Career Match Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="logo" href="#">Intern<span>Hub.</span></a>
+      <p class="side-label">WORKSPACE</p>
+      <button class="nav active" data-page="discover">⌂ Discover</button>
+      <button class="nav" data-page="saved">♡ Saved internships <span id="savedNav">0</span></button>
+      <button class="nav" data-page="applications">✓ My applications <span id="appNav">0</span></button>
+
+      <div class="side-tip">
+        <div class="tip-icon">✨</div>
+        <h3>Your future starts here.</h3>
+        <p>Discover opportunities that match your skills and goals.</p>
+      </div>
+      <div class="sidebar-footer">INTERNHUB · CAREER COMPANION</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR CAREER JOURNEY</p>
+          <h1>Find your career match <span>✦</span></h1>
+          <p class="muted">Discover opportunities that fit your potential.</p>
+        </div>
+        <div class="top-actions">
+          <button id="themeBtn" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+          <div class="avatar">S</div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-content">
+          <span class="hero-badge">✦ SMART CAREER MATCHING</span>
+          <h2>Your skills.<br>Your ambition.<br><span>Your next opportunity.</span></h2>
+          <p>Tell us what you know. We'll help you discover internships to explore.</p>
+          <button id="startBtn" class="hero-btn">Build my career profile ↗</button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="hero-planet">🚀</div>
+          <span class="spark spark-a">✦</span>
+          <span class="spark spark-b">✧</span>
+        </div>
+      </section>
+
+      <section class="stats">
+        <article class="stat">
+          <span class="stat-icon lavender">▦</span>
+          <p>Opportunities</p>
+          <h2 id="totalCount">0</h2>
+          <small>Demo listings available</small>
+        </article>
+        <article class="stat">
+          <span class="stat-icon rose">♡</span>
+          <p>Saved internships</p>
+          <h2 id="savedCount">0</h2>
+          <small>Keep your favourites close</small>
+        </article>
+        <article class="stat">
+          <span class="stat-icon mint">✓</span>
+          <p>Applications</p>
+          <h2 id="appliedCount">0</h2>
+          <small>Applications you're tracking</small>
+        </article>
+      </section>
+
+      <section class="profile-panel" id="profile">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PERSONALIZE YOUR SEARCH</p>
+            <h2>Build your career profile</h2>
+            <p class="muted">Select your skills and preferred field.</p>
+          </div>
+          <span class="profile-emoji">🎯</span>
+        </div>
+
+        <h3 class="field-title">1. What skills do you have?</h3>
+        <div class="skill-list" id="skillList">
+          <label class="skill"><input type="checkbox" value="HTML"> HTML</label>
+          <label class="skill"><input type="checkbox" value="CSS"> CSS</label>
+          <label class="skill"><input type="checkbox" value="JavaScript"> JavaScript</label>
+          <label class="skill"><input type="checkbox" value="Python"> Python</label>
+          <label class="skill"><input type="checkbox" value="Java"> Java</label>
+          <label class="skill"><input type="checkbox" value="SQL"> SQL</label>
+          <label class="skill"><input type="checkbox" value="Figma"> Figma</label>
+          <label class="skill"><input type="checkbox" value="Machine Learning"> Machine Learning</label>
+          <label class="skill"><input type="checkbox" value="Communication"> Communication</label>
+          <label class="skill"><input type="checkbox" value="Marketing"> Marketing</label>
+        </div>
+
+        <div class="profile-fields">
+          <div>
+            <label class="field-title" for="interest">2. Your career interest</label>
+            <select id="interest">
+              <option value="All">Explore all fields</option>
+              <option value="Web Development">Web Development</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Data Science">Data Science</option>
+              <option value="Artificial Intelligence">Artificial Intelligence</option>
+              <option value="Marketing">Marketing</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-title" for="workMode">3. Preferred work mode</label>
+            <select id="workMode">
+              <option value="All">Any work mode</option>
+              <option value="Remote">Remote</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="On-site">On-site</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-title" for="minStipend">4. Minimum monthly stipend</label>
+            <select id="minStipend">
+              <option value="0">Any stipend</option>
+              <option value="5000">₹5,000+</option>
+              <option value="10000">₹10,000+</option>
+              <option value="15000">₹15,000+</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="matchBtn" class="primary-btn">Find my matches ✨</button>
+        <p id="profileFeedback" class="feedback" aria-live="polite">Choose your skills to get personalized recommendations.</p>
+      </section>
+
+      <section class="results-section" id="results">
+        <div class="section-heading results-heading">
+          <div>
+            <p class="eyebrow">YOUR NEXT STEP</p>
+            <h2 id="resultsTitle">Recommended internships</h2>
+            <p class="muted" id="resultsSubtitle">Explore opportunities that could suit you.</p>
+          </div>
+          <select id="sortBy" aria-label="Sort internships">
+            <option value="match">Best match</option>
+            <option value="stipend">Highest stipend</option>
+            <option value="az">Role A–Z</option>
+          </select>
+        </div>
+
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Search roles, companies or skills...">
+          <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="quick-filters">
+          <button class="quick-filter active" data-category="All">All roles</button>
+          <button class="quick-filter" data-category="Web Development">Development</button>
+          <button class="quick-filter" data-category="UI/UX Design">Design</button>
+          <button class="quick-filter" data-category="Data Science">Data</button>
+          <button class="quick-filter" data-category="Artificial Intelligence">AI</button>
+          <button class="quick-filter" data-category="Marketing">Marketing</button>
+        </div>
+
+        <p id="resultCount" class="result-count" aria-live="polite"></p>
+        <div class="internship-grid" id="internshipGrid"></div>
+      </section>
+
+      <section class="applications-panel" id="applicationsPanel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR PROGRESS</p>
+            <h2>Application tracker</h2>
+            <p class="muted">Keep track of the opportunities you have applied to.</p>
+          </div>
+        </div>
+        <div id="applicationList"></div>
+      </section>
+
+      <footer>Made with ♥ for your career journey · InternHub</footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeModal" class="close-btn" aria-label="Close dialog">×</button>
+      <div id="modalBody"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
